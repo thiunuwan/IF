@@ -2,12 +2,12 @@ from flask import Flask, request, jsonify, send_file
 import requests
 import os
 import json
-from flask_cors import CORS  # Import CORS
+# from flask_cors import CORS  # Import CORS
 
 app = Flask(__name__)
 
 # Enable CORS for the entire app
-CORS(app)
+# CORS(app)
 
 # Helper function to fetch GitHub issue
 def fetch_github_issue(owner, repo, issue_id):
