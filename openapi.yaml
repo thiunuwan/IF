@@ -1,0 +1,71 @@
+openapi: 3.0.3
+info:
+  title: GitHub Issues Fetcher API
+  description: API for fetching GitHub issues and downloading them as a JSON file.
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000
+paths:
+  /hello:
+    get:
+      summary: Greeting endpoint
+      description: Returns a simple greeting message.
+      responses:
+        '200':
+          description: A greeting message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Hello, world!'
+  /fetchIssues:
+    post:
+      summary: Fetch GitHub Issues
+      description: Fetch specified GitHub issues and return them as a downloadable JSON file.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                repoUrl:
+                  type: string
+                  example: 'https://github.com/user/repo'
+                issueIds:
+                  type: array
+                  items:
+                    type: integer
+                  example: [1, 23, 45]
+      responses:
+        '200':
+          description: JSON file containing GitHub issues.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+                example: 'repo.issues.json'
+        '400':
+          description: Invalid input data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Invalid repository URL or issue IDs.'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Error fetching GitHub issues.'
