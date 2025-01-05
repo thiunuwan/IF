@@ -101,7 +101,7 @@
       const repoUrl = document.getElementById("repoUrl").value;
       const issueIds = document.getElementById("issueIds").value.split(",").map(id => id.trim());
 
-      fetch('http://localhost:5000/fetchIssues', {
+      fetch('https://44e85217-a67d-41b0-ac3d-f5845f368a36-dev.e1-us-east-azure.choreoapis.dev/trif3cta/githubissuefetcher/v1.0/fetchIssues', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
